@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'company_id',
+        'invited_by',
     ];
 
     /**
@@ -36,6 +38,16 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'remember_token',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function shortUrls()
+    {
+        return $this->hasMany(ShortUrl::class, 'created_by');
+    }
 
     /**
      * Get the attributes that should be cast.

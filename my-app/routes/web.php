@@ -14,4 +14,10 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/settings.php';
+Route::get('accept-invitation', function () {
+    return Inertia::render('auth/AcceptInvitation', [
+        'token' => request()->query('token'),
+    ]);
+})->name('accept-invitation');
+
+require __DIR__ . '/settings.php';
